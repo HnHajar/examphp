@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  EventHub Pro — mail/templates/confirmation.html            ║
+  ║  Template email de confirmation d'inscription               ║
+  ║  ENSA Marrakech — Examen PHP Avancé                         ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+  STATUT : ⚠️ Partiel — À utiliser dans mail/SendConfirmation.php
+
+  PLACEHOLDERS à remplacer côté PHP avec str_replace() :
+    {{PARTICIPANT_NAME}}   → nom du participant
+    {{EVENT_TITLE}}        → titre de l'événement
+    {{EVENT_DATE}}         → date formatée (ex: Lundi 20 septembre 2025 à 09h00)
+    {{EVENT_LOCATION}}     → lieu de l'événement
+    {{TICKET_LINK}}        → URL du ticket PDF
+    {{UNSUBSCRIBE_LINK}}   → URL de désinscription avec token
+    {{YEAR}}               → année courante
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmation d'inscription — EventHub Pro</title>
+  <style>
+    body        { margin:0; padding:0; background:#f1f5f9; font-family:Arial,sans-serif; }
+    .wrapper    { max-width:600px; margin:32px auto; background:#ffffff;
+                  border-radius:12px; overflow:hidden;
+                  box-shadow:0 4px 24px rgba(15,31,61,.10); }
+    .header     { background:#0f1f3d; padding:32px 40px; text-align:center; }
+    .header h1  { color:#f59e0b; font-size:22px; margin:0 0 4px; }
+    .header p   { color:rgba(255,255,255,.6); font-size:13px; margin:0; }
+    .body       { padding:36px 40px; }
+    .greeting   { font-size:18px; font-weight:bold; color:#0f1f3d; margin-bottom:8px; }
+    .intro      { color:#475569; font-size:15px; line-height:1.6; margin-bottom:24px; }
+    .event-card { background:#f8fafc; border:1px solid #e2e8f0;
+                  border-radius:10px; padding:20px 24px; margin-bottom:24px; }
+    .event-card h2  { color:#0f1f3d; font-size:18px; margin:0 0 14px; }
+    .event-card .row { display:flex; align-items:flex-start; gap:10px;
+                       margin-bottom:8px; font-size:14px; color:#475569; }
+    .event-card .icon { font-size:16px; min-width:20px; }
+    .btn        { display:inline-block; padding:14px 32px; border-radius:8px;
+                  background:#2563eb; color:#ffffff !important;
+                  text-decoration:none; font-weight:bold;
+                  font-size:15px; text-align:center; }
+    .btn-wrap   { text-align:center; margin:28px 0; }
+    .info-box   { background:#fef3c7; border:1px solid #f59e0b;
+                  border-radius:8px; padding:14px 18px;
+                  font-size:13px; color:#92400e; margin-bottom:24px; }
+    .footer     { background:#f8fafc; border-top:1px solid #e2e8f0;
+                  padding:20px 40px; text-align:center; }
+    .footer p   { color:#94a3b8; font-size:12px; margin:4px 0; }
+    .footer a   { color:#94a3b8; }
+    hr          { border:none; border-top:1px solid #e2e8f0; margin:24px 0; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- En-tête -->
+    <div class="header">
+      <h1>EventHub Pro</h1>
+      <p>ENSA Marrakech — Université Cadi Ayyad</p>
+    </div>
+
+    <!-- Corps -->
+    <div class="body">
+
+      <p class="greeting">Bonjour {{PARTICIPANT_NAME}} 👋</p>
+      <p class="intro">
+        Votre inscription est confirmée ! Nous avons bien enregistré votre participation
+        à l'événement suivant. Retrouvez ci-dessous tous les détails.
+      </p>
+
+      <!-- Détails de l'événement -->
+      <div class="event-card">
+        <h2>{{EVENT_TITLE}}</h2>
+        <div class="row">
+          <span class="icon">📅</span>
+          <span>{{EVENT_DATE}}</span>
+        </div>
+        <div class="row">
+          <span class="icon">📍</span>
+          <span>{{EVENT_LOCATION}}</span>
+        </div>
+      </div>
+
+      <!-- Bouton ticket -->
+      <div class="btn-wrap">
+        <a href="{{TICKET_LINK}}" class="btn">📄 Télécharger mon ticket PDF</a>
+      </div>
+
+      <!-- Rappel -->
+      <div class="info-box">
+        💡 <strong>Rappel :</strong> Conservez ce ticket et présentez-le (imprimé ou sur smartphone)
+        à l'entrée de l'événement. Le QR code sera scanné pour valider votre présence.
+      </div>
+
+      <hr />
+
+      <p style="font-size:13px; color:#94a3b8; text-align:center;">
+        Vous ne pouvez plus participer ?
+        <a href="{{UNSUBSCRIBE_LINK}}" style="color:#dc2626;">Se désinscrire</a>
+      </p>
+
+    </div>
+
+    <!-- Pied de page -->
+    <div class="footer">
+      <p>© {{YEAR}} EventHub Pro — ENSA Marrakech</p>
+      <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  EventHub Pro — mail/templates/alert.html                   ║
+  ║  Template email d'alerte capacité (seuil 80%)               ║
+  ║  ENSA Marrakech — Examen PHP Avancé                         ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+  PLACEHOLDERS :
+    {{ORGANIZER_NAME}}   → nom de l'organisateur
+    {{EVENT_TITLE}}      → titre de l'événement
+    {{FILL_PCT}}         → pourcentage de remplissage (ex: 82)
+    {{REGISTERED}}       → nombre d'inscrits
+    {{CAPACITY}}         → capacité totale
+    {{DASHBOARD_LINK}}   → URL du dashboard organisateur
+    {{YEAR}}             → année courante
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alerte capacité — {{EVENT_TITLE}}</title>
+  <style>
+    body        { margin:0; padding:0; background:#f1f5f9; font-family:Arial,sans-serif; }
+    .wrapper    { max-width:600px; margin:32px auto; background:#fff;
+                  border-radius:12px; overflow:hidden;
+                  box-shadow:0 4px 24px rgba(15,31,61,.10); }
+    .header     { background:#dc2626; padding:28px 40px; text-align:center; }
+    .header h1  { color:#fff; font-size:20px; margin:0 0 4px; }
+    .header p   { color:rgba(255,255,255,.75); font-size:13px; margin:0; }
+    .body       { padding:36px 40px; }
+    .alert-badge{
+      display:inline-block; background:#fee2e2; color:#dc2626;
+      border:1px solid #fca5a5; border-radius:99px;
+      font-weight:bold; font-size:13px; padding:4px 14px; margin-bottom:20px;
+    }
+    .title      { font-size:18px; font-weight:bold; color:#0f1f3d; margin-bottom:16px; }
+    .stat-grid  { display:grid; grid-template-columns:1fr 1fr 1fr;
+                  gap:12px; margin:24px 0; }
+    .stat-box   { background:#f8fafc; border:1px solid #e2e8f0;
+                  border-radius:8px; padding:16px; text-align:center; }
+    .stat-num   { font-size:28px; font-weight:bold; color:#0f1f3d; }
+    .stat-label { font-size:12px; color:#94a3b8; margin-top:4px; }
+    .stat-box.highlight .stat-num { color:#dc2626; }
+    .progress-wrap { margin:20px 0; }
+    .progress-wrap label { font-size:13px; color:#475569; display:block; margin-bottom:6px; }
+    .progress-bar { background:#e2e8f0; border-radius:99px; height:10px; overflow:hidden; }
+    .progress-fill{ background:#f59e0b; height:100%; border-radius:99px;
+                    width:{{FILL_PCT}}%; transition:width .5s; }
+    .btn-wrap   { text-align:center; margin:28px 0; }
+    .btn        { display:inline-block; padding:14px 32px; border-radius:8px;
+                  background:#0f1f3d; color:#fff !important;
+                  text-decoration:none; font-weight:bold; font-size:15px; }
+    .tip-box    { background:#fef3c7; border:1px solid #f59e0b;
+                  border-radius:8px; padding:14px 18px;
+                  font-size:13px; color:#92400e; }
+    .footer     { background:#f8fafc; border-top:1px solid #e2e8f0;
+                  padding:20px 40px; text-align:center; }
+    .footer p   { color:#94a3b8; font-size:12px; margin:4px 0; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="header">
+      <h1>⚠️ Alerte Capacité</h1>
+      <p>EventHub Pro — ENSA Marrakech</p>
+    </div>
+
+    <div class="body">
+
+      <span class="alert-badge">🔥 Seuil 80% atteint</span>
+
+      <p class="title">Bonjour {{ORGANIZER_NAME}},</p>
+
+      <p style="color:#475569; font-size:15px; line-height:1.6;">
+        Votre événement <strong>{{EVENT_TITLE}}</strong> a atteint
+        <strong>{{FILL_PCT}}%</strong> de sa capacité.
+        Il ne reste plus que <strong>{{AVAILABLE}}</strong> place(s) disponible(s).
+        Retrouvez le rapport complet en pièce jointe.
+      </p>
+
+      <!-- Statistiques -->
+      <div class="stat-grid">
+        <div class="stat-box highlight">
+          <div class="stat-num">{{FILL_PCT}}%</div>
+          <div class="stat-label">Remplissage</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">{{REGISTERED}}</div>
+          <div class="stat-label">Inscrits</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">{{CAPACITY}}</div>
+          <div class="stat-label">Capacité</div>
+        </div>
+      </div>
+
+      <!-- Barre de progression -->
+      <div class="progress-wrap">
+        <label>Taux de remplissage actuel</label>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        💡 <strong>Conseil :</strong> Envisagez d'agrandir la salle ou d'ouvrir
+        une liste d'attente pour ne pas décevoir les participants intéressés.
+      </div>
+
+      <div class="btn-wrap">
+        <a href="{{DASHBOARD_LINK}}" class="btn">📊 Voir le dashboard</a>
+      </div>
+
+      <p style="font-size:12px; color:#94a3b8; text-align:center;">
+        Le rapport PDF complet est joint à cet email.
+      </p>
+
+    </div>
+
+    <div class="footer">
+      <p>© {{YEAR}} EventHub Pro — ENSA Marrakech</p>
+      <p>Cet email a été envoyé automatiquement suite à une inscription.</p>
+    </div>
+
+  </div>
+</body>
+</html>
