@@ -18,16 +18,16 @@
 define('SMTP_HOST',       'smtp.gmail.com');          // Ex: smtp.gmail.com  ou  smtp.mailtrap.io
 define('SMTP_PORT',       587);                       // 587 (TLS) ou 465 (SSL)
 define('SMTP_USER',       'hnidhajar22@gmail.com');   // Votre adresse email d'envoi
-define('SMTP_PASS',       'kgwhpaqrlplmncow');      // App Password Gmail 16 caractères
+define('SMTP_PASS',       'xxxxxxxxxxxxxxxx');      // App Password Gmail 16 caractères
                           // ⚠️  Générer sur : myaccount.google.com/apppasswords
 define('SMTP_FROM_NAME',  'EventHub Pro — ENSA Marrakech');
 define('SMTP_ENCRYPTION', 'tls');                     // 'tls' ou 'ssl'
 
 // ── URL de base du projet ─────────────────────────────────────────────────
-define('BASE_URL', 'http://localhost/EventHub_Pro_MVP/eventhub_mvp/');
+define('BASE_URL', 'http://localhost/EventHub_Pro_MVP/eventhub_mvp');
 
 // ── Adresse destinataire fixe (pour les tests) ────────────────────────────
-define('MAIL_TO',      'realiteaugmentee26.rec@gmail.com');
+define('MAIL_TO',      'walid.bouarifi@gmail.com');
 define('MAIL_TO_NAME', 'EventHub Recrutement');
 
 // Conseil : utilisez Mailtrap (mailtrap.io) pour tester sans envoyer de vrais emails
